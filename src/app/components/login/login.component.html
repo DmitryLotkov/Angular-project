@@ -1,0 +1,22 @@
+<div class="container">
+  <form [formGroup]="loginForm" (ngSubmit)="displayInputData()">
+
+
+    <div style="margin-bottom: 1rem">
+      <label for="email"></label>
+      <input placeholder="email" type="text" class="p-inputtext-sm" id="email" pInputText formControlName="email"
+             required minlength="4"/>
+    </div>
+    <div *ngIf="loginForm!.getRawValue().email">error</div>
+
+    <div>
+      <label for="pass"></label>
+      <input placeholder="pass" type="text" class="p-inputtext-sm" id="pass" pInputText formControlName="pass"
+             required/>
+    </div>
+    <p-button type="submit" class="customButton" label="Submit"
+              [disabled]="!loginForm.invalid"></p-button>
+  </form>
+
+
+</div>

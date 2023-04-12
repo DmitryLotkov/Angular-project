@@ -1,0 +1,20 @@
+/*::ng-deep {
+  .input {
+
+  }
+}*/
+.container{
+  display: flex;
+  align-items: center;
+  column-gap: 1rem;
+
+  ::ng-deep  {
+
+    button {
+
+      height: 15px;
+    }
+
+  }
+}
+

@@ -1,0 +1,27 @@
+
+
+  .item {
+    border: 1px solid black;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: aqua;
+
+    ::ng-deep{
+      button{
+        width:20px;
+        height: 30px;
+        cursor: pointer;
+      }
+    }
+
+    p{
+      width: 8rem;
+    }
+    .container {
+      margin-right: 1rem;
+    }
+  }
+
+
+

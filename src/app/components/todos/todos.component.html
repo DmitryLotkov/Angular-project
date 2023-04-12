@@ -1,0 +1,12 @@
+<h1 *ngIf="!!error; else content">{{error}}></h1>
+
+<ng-template #content class="wrapper">
+  <div style="margin-bottom: 1rem">
+    <div *ngFor="let todo of todos$ | async" class="item">
+      <p class="container">{{todo.title}} -- {{todo.order}}</p>
+      <p-button styleClass="p-button-sm" icon="pi pi-trash" (click)="deleteTodo(todo.id)"
+                class="customButton"></p-button>
+    </div>
+  </div>
+  <p-button  styleClass="p-button-sm" (click) = "createTodo()" label="Create"></p-button>
+</ng-template>
