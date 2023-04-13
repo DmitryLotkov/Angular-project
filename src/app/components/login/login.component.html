@@ -9,17 +9,22 @@
              class="p-inputtext-sm"
              id="email" pInputText
              formControlName="email"
-             required minlength="4"/>
+             required minlength="4"
+      [ngClass]="{
+      inputError: email!.invalid && (email!.touched),
+      inputSuccess: email!.valid}"
+      />
+
     </div>
     <div *ngIf="email!.invalid && (email!.touched)"
          class="error">
-      <div *ngIf="email!.errors!['required']">
+      <div *ngIf="email!.errors?.['required']">
         Email is required.
       </div>
-      <div *ngIf="email!.errors!['minlength']">
+      <div *ngIf="email!.errors?.['minlength']">
         Email must be at least 4 characters long.
       </div>
-      <div *ngIf="email!.errors!['email']">
+      <div *ngIf="email!.errors?.['pattern']">
         Email is incorrect.
       </div>
     </div>
