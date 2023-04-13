@@ -7,7 +7,8 @@ import {Todo, TodoService} from "../../services/todo.service";
   templateUrl: './todos.component.html',
   styleUrls: ['./todos.component.scss']
 })
-export class TodosComponent implements OnInit{
+
+export class TodosComponent implements OnInit {
   public error = ""
   public todos$!: Observable<Todo[]>
 

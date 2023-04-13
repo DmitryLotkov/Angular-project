@@ -1,50 +1,51 @@
 <div class="container">
-  <form [formGroup]="loginForm" (ngSubmit)="displayInputData()">
+  <form [formGroup]="loginForm" (ngSubmit)="displayInputData()" style="display: flex; flex-direction: column; justify-content: space-between; height: 150px">
+    <div>
+      <div style="margin-bottom: 1rem">
 
-    <div style="margin-bottom: 1rem">
-
-      <label for="email"></label>
-      <input placeholder="email"
-             type="text"
-             class="p-inputtext-sm"
-             id="email" pInputText
-             formControlName="email"
-             required minlength="4"
-      [ngClass]="{
+        <label for="email"></label>
+        <input placeholder="email"
+               type="text"
+               class="p-inputtext-sm"
+               id="email" pInputText
+               formControlName="email"
+               required minlength="4"
+               [ngClass]="{
       inputError: email!.invalid && (email!.touched),
       inputSuccess: email!.valid}"
-      />
+        />
 
-    </div>
-    <div *ngIf="email!.invalid && (email!.touched)"
-         class="error">
-      <div *ngIf="email!.errors?.['required']">
-        Email is required.
       </div>
-      <div *ngIf="email!.errors?.['minlength']">
-        Email must be at least 4 characters long.
+      <div *ngIf="email!.invalid && (email!.touched)"
+           class="error">
+        <div *ngIf="email!.errors?.['required']">
+          Email is required.
+        </div>
+        <div *ngIf="email!.errors?.['minlength']">
+          Email must be at least 4 characters long.
+        </div>
+        <div *ngIf="email!.errors?.['pattern']">
+          Email is incorrect.
+        </div>
       </div>
-      <div *ngIf="email!.errors?.['pattern']">
-        Email is incorrect.
-      </div>
-    </div>
 
-    <div>
-      <label for="pass"></label>
-      <input placeholder="pass"
-             type="text"
-             class="p-inputtext-sm"
-             id="pass" pInputText
-             formControlName="pass"
-             required/>
-    </div>
-    <div *ngIf="pass!.invalid && (pass!.touched)"
-         class="error">
-      <div *ngIf="pass!.errors!['required']">
-        Password is required.
+      <div>
+        <label for="pass"></label>
+        <input placeholder="pass"
+               type="text"
+               class="p-inputtext-sm"
+               id="pass" pInputText
+               formControlName="pass"
+               required/>
       </div>
-      <div *ngIf="pass!.errors!['minlength']">
-        Password must be at least {{passMinLength}} characters long.
+      <div *ngIf="pass!.invalid && (pass!.touched)"
+           class="error">
+        <div *ngIf="pass!.errors!['required']">
+          Password is required.
+        </div>
+        <div *ngIf="pass!.errors!['minlength']">
+          Password must be at least {{passMinLength}} characters long.
+        </div>
       </div>
     </div>
 

@@ -13,6 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UsersComponent } from './components/users/users.component';
 import {RouterModule} from "@angular/router";
+import {AppRoutingRoutingModule} from "./app-routing-routing.module";
 
 @NgModule({
   declarations: [
@@ -25,12 +26,7 @@ import {RouterModule} from "@angular/router";
   ],
   imports: [
     RouterModule,
-    RouterModule.forRoot([
-      { path: "", component: TodosComponent},
-      { path: "login", component: LoginComponent},
-      { path: "404", component: PageNotFoundComponent},
-      { path: "users", component: UsersComponent},
-    ]),
+    AppRoutingRoutingModule,
     ReactiveFormsModule,
     BrowserModule,
     ButtonModule,

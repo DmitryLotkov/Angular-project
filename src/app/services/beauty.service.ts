@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
 
-type SeverityType = 'error' | 'success' | 'warning'
+type SeverityType = 'error' | 'success' | 'warning';
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class BeautyService {
   log(message: string, type:SeverityType){
     console.log(`%c${message}`, this.getSeverity(type))
