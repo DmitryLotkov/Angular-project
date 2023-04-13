@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
@@ -6,17 +6,32 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-
+  passMinLength = 3
+  loginForm!: FormGroup
   displayInputData() {
     console.log(this.loginForm.value)
-    this.loginForm.value.email = ""
-    this.loginForm.value.pass = ""
-  }
+    this.loginForm.reset()
 
-  loginForm = new FormGroup({
-    email: new FormControl('', Validators.required),
-    pass: new FormControl('', Validators.required),
-  });
+  }
+  get email(){
+    return this.loginForm.get('email')
+  }
+  get pass(){
+    return this.loginForm.get('pass')
+  }
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl("", [
+        Validators.required,
+        Validators.minLength(4),
+        Validators.email
+      ]),
+      pass: new FormControl("", [
+        Validators.required,
+        Validators.minLength(this.passMinLength),
+      ])
+    })
+  }
 }
