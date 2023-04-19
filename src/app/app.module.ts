@@ -13,7 +13,7 @@ import { HomeComponent } from './components/home/home.component';
 import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
 import { UsersComponent } from './components/users/users.component';
 import {RouterModule} from "@angular/router";
-import {AppRoutingRoutingModule} from "./app-routing-routing.module";
+import { ProfileComponent } from './components/users/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -22,11 +22,12 @@ import {AppRoutingRoutingModule} from "./app-routing-routing.module";
     LoginComponent,
     HomeComponent,
     PageNotFoundComponent,
-    UsersComponent
+    UsersComponent,
+    ProfileComponent
   ],
   imports: [
     RouterModule,
-    AppRoutingRoutingModule,
+    AppRoutingModule,
     ReactiveFormsModule,
     BrowserModule,
     ButtonModule,

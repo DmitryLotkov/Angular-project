@@ -1,13 +1,27 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {environment} from "../environment/enviroment.prod";
-/*interface UsersResponse {
+import {map, Observable} from "rxjs";
+
+export interface User {
+  id: string
+  name: string
+  photos: {
+    small: string
+    large: string
+  }
+  followed: boolean
+}
+
+interface UsersResponse {
   items: User[],
   totalCount: number
-}*/
+}
+
 @Injectable({
   providedIn: 'root'
 })
+
 export class UsersService {
 
   constructor(private http: HttpClient) { }
@@ -15,7 +29,9 @@ export class UsersService {
     headers: new HttpHeaders().append('api-key', environment['apiKey']),
     withCredentials: true
   }
-  getUsers(){
-    this.http.get(`${environment.baseNetworkUrl}/users`, this.httpOptions)
+  getUsers(): Observable<User[]>{
+    return this.http.get<UsersResponse>(`${environment.baseNetworkUrl}/users`, this.httpOptions).pipe(
+      map( el => el.items)
+    )
   }
 }

@@ -1,0 +1,7 @@
+<div *ngIf="profile$ | async; let profile">
+  <b>{{ profile.fullName }}</b>
+  <div> {{ profile.lookingForAJob }}</div>
+</div>
+<button (click)="backToUsersHandler()">back to users</button>
+<!--когда Observable идет в виде объекта, а не массива, мы его отрисовываем такми образом-->
+<button [routerLink]="['/users']">back to users1</button> <!--альтернативный вариант написания роутинга-->
