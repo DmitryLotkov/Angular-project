@@ -2,3 +2,6 @@
   {{ user.id }} - <a class="link" [routerLink]="['/profile', user.id]" >{{ user.name }}
 </a>
 </div>
+
+<button [routerLink]="['/users']" [queryParams]="{page: 1}">to start page</button>
+<button (click)="nextUsersHandler()">next</button>
