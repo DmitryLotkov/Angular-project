@@ -4,7 +4,7 @@ import { ButtonModule } from 'primeng/button';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TodosComponent } from './components/todos/todos.component';
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {ReactiveFormsModule} from "@angular/forms";
 import { LoginComponent } from './components/login/login.component';
@@ -14,6 +14,7 @@ import { PageNotFoundComponent } from './components/page-not-found/page-not-foun
 import { UsersComponent } from './components/users/users.component';
 import {RouterModule} from "@angular/router";
 import { ProfileComponent } from './components/users/profile/profile.component';
+import {CredentialsInterceptor} from "./interceptors/credentials.interceptor";
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { ProfileComponent } from './components/users/profile/profile.component';
     HttpClientModule,
     InputTextModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: CredentialsInterceptor, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

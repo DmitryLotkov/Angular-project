@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {environment} from "../environment/enviroment.prod";
 import {map, Observable} from "rxjs";
 
@@ -25,12 +25,12 @@ interface UsersResponse {
 export class UsersService {
 
   constructor(private http: HttpClient) { }
-  httpOptions = {
+  /*httpOptions = {
     headers: new HttpHeaders().append('api-key', environment['apiKey']),
     withCredentials: true
-  }
+  }*/
   getUsers(page: number): Observable<User[]>{
-    return this.http.get<UsersResponse>(`${environment.baseNetworkUrl}/users?page=${page}`, this.httpOptions).pipe(
+    return this.http.get<UsersResponse>(`${environment.baseNetworkUrl}/users?page=${page}`).pipe(
       map( el => el.items)
     )
   }
