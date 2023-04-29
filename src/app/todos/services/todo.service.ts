@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpErrorResponse} from "@angular/common/http";
-import {BehaviorSubject, catchError, EMPTY, map, Observable, throwError} from "rxjs";
-import {environment} from "../environment/enviroment.prod";
-import {logMessages} from "@angular-devkit/build-angular/src/builders/browser-esbuild/esbuild";
-import {BeautyService} from "./beauty.service";
+import {BehaviorSubject, catchError, EMPTY, map} from "rxjs";
+import {environment} from "../../environment/enviroment.prod";
+import {BeautyService} from "../../core/services/beauty.service";
 
 export interface Todo {
   id: string
@@ -28,12 +27,7 @@ export class TodoService {
   constructor(private http: HttpClient, private beautyService: BeautyService) {
   }
 
-  httpOptions = {
-    withCredentials: true,
-    headers: {
-      "api-key": environment.apiKey
-    }
-  }
+
 
   private errorHandler(err: HttpErrorResponse) {
     this.beautyService.log(err.message, 'error')
@@ -41,7 +35,7 @@ export class TodoService {
   }
 
   getTodos() {
-    this.http.get<Todo[]>(`${environment.baseUrl}/todo-lists`, this.httpOptions)
+    this.http.get<Todo[]>(`${environment.baseUrl}/todo-lists`)
       .pipe(catchError(this.errorHandler.bind(this)))
       .subscribe(todos => {
         this.todos$.next(todos)
@@ -52,7 +46,7 @@ export class TodoService {
     const randomNumber = Math.floor(Math.random() * 100)
     const title = "Angular " + randomNumber
     this.http.post<BaseResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`,
-      {title}, this.httpOptions)
+      {title})
       .pipe(
         map(res => {
           const newTodo = res.data.item;
@@ -67,7 +61,7 @@ export class TodoService {
   }
 
   deleteTodo(todoId: string) {
-    this.http.delete<BaseResponse>(`${environment.baseUrl}/todo-lists/${todoId}`, this.httpOptions)
+    this.http.delete<BaseResponse>(`${environment.baseUrl}/todo-lists/${todoId}`)
       .pipe(
         map(() => {
           return this.todos$.getValue().filter(tl => tl.id !== todoId)

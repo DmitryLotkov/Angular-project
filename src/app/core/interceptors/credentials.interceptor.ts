@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpEvent, HttpHandler, HttpHeaders, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {environment} from "../environment/enviroment.prod";
+import {environment} from "../../environment/enviroment.prod";
 
 @Injectable()
 export class CredentialsInterceptor implements HttpInterceptor {

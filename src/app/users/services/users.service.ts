@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {environment} from "../environment/enviroment.prod";
+import {environment} from "../../environment/enviroment.prod";
 import {map, Observable} from "rxjs";
 
 export interface User {
