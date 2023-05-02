@@ -3,20 +3,10 @@ import {HttpClient, HttpErrorResponse} from "@angular/common/http";
 import {BehaviorSubject, catchError, EMPTY, map} from "rxjs";
 import {environment} from "../../environment/enviroment.prod";
 import {BeautyService} from "../../core/services/beauty.service";
+import {ICommonResponse} from "../../shared/models/core.model";
+import {Todo} from "../models/todos.model";
 
-export interface Todo {
-  id: string
-  title: string
-  order: number
-  addedDate: string
-}
 
-export interface BaseResponse<T = {}> {
-  data: T
-  messages: string[]
-  fieldsError: string[]
-  resultCode: number
-}
 
 @Injectable({
   providedIn: 'root'
@@ -45,7 +35,7 @@ export class TodoService {
   createTodo() {
     const randomNumber = Math.floor(Math.random() * 100)
     const title = "Angular " + randomNumber
-    this.http.post<BaseResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`,
+    this.http.post<ICommonResponse<{ item: Todo }>>(`${environment.baseUrl}/todo-lists`,
       {title})
       .pipe(
         map(res => {
@@ -61,7 +51,7 @@ export class TodoService {
   }
 
   deleteTodo(todoId: string) {
-    this.http.delete<BaseResponse>(`${environment.baseUrl}/todo-lists/${todoId}`)
+    this.http.delete<ICommonResponse>(`${environment.baseUrl}/todo-lists/${todoId}`)
       .pipe(
         map(() => {
           return this.todos$.getValue().filter(tl => tl.id !== todoId)

@@ -7,6 +7,7 @@ import {ReactiveFormsModule} from "@angular/forms";
 import {ButtonModule} from "primeng/button";
 import {PageNotFoundComponent} from "./components/page-not-found/page-not-found.component";
 import {ChipsModule} from "primeng/chips";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import {ChipsModule} from "primeng/chips";
     SharedModule,
     ReactiveFormsModule,
     ButtonModule,
-    ChipsModule
+    ChipsModule,
+    HttpClientModule
   ]
 })
 export class AuthModule { }
