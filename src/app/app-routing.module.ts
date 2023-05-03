@@ -1,15 +1,26 @@
 import {NgModule} from '@angular/core';
-import {RouterModule, Routes} from '@angular/router';
-import {PageNotFoundComponent} from "./auth/components/page-not-found/page-not-found.component";
+import {PreloadAllModules, RouterModule, Routes} from '@angular/router';
 
 const routes: Routes = [
 
-  //{ path: "**", redirectTo: "/404" },
-  { path: "404", component: PageNotFoundComponent },//wildCard route если нет совпадения урла, то будет редирект сюда. Обязан быть в конце массива!!!
+  {
+    path: "login",
+    loadChildren: () => import("./auth/auth.module").then(m => m.AuthModule)
+  },
+  {
+    path: "users",
+    loadChildren: () => import("./users/users.module").then(m => m.UsersModule)
+  },
+  {
+    path: "todos",
+    loadChildren: () => import("./todos/todos.module").then(m => m.TodosModule)
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: PreloadAllModules
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

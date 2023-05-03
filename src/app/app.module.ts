@@ -5,8 +5,6 @@ import {AppComponent} from './app.component';
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 import {HomeComponent} from './home/components/home/home.component';
 import {RouterModule} from "@angular/router";
-import {UsersModule} from "./users/users.module";
-import {TodosModule} from "./todos/todos.module";
 import {HomeModule} from "./home/home.module";
 import {CoreModule} from "./core/core.module";
 import {AuthModule} from "./auth/auth.module";
@@ -21,8 +19,6 @@ import {AuthModule} from "./auth/auth.module";
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    UsersModule,
-    TodosModule,
     HomeModule,
     CoreModule,
     AuthModule

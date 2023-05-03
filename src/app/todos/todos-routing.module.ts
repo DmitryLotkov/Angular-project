@@ -4,7 +4,7 @@ import {TodosComponent} from "./components/todos/todos.component";
 import {AuthGuard} from "../core/guards/auth.guard";
 
 const routes: Routes = [
-  { path: "todos", component: TodosComponent, canActivate: [AuthGuard] },
+  { path: "", component: TodosComponent, canActivate: [AuthGuard] },
 ];
 
 @NgModule({
